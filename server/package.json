@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js", 
+    "serve": "node index.js"
+  },
+  "keywords": [],
+  "author": "Siddhesh Bhupendra Kukade",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "http": "^0.0.1-security",
+    "mongoose": "^6.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
