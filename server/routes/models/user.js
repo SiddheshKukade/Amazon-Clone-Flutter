@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-
 let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const userSchema = mongoose.Schema({
     name: {

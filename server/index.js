@@ -5,7 +5,7 @@ var morgan = require('morgan')
 require('dotenv').config()
 //local imports
 const authRouter = require("./routes/auth")
-
+const PORT = process.env.PORT || 4000;
  
 //init
 const app = express();
@@ -17,4 +17,4 @@ app.use(authRouter)
 
 mongoose.connect(process.env.MONGO_DB_URL, () => { console.log("Databse Connected " + new Date().getHours() + " : " + new Date().getMinutes(),) }).then(() => { }).catch(err => console.log("error occured " + new Date().getHours() + " : " + new Date().getMinutes(), err));
 
-app.listen(4000, "0.0.0.0", () => console.log("port is running good 4000"))
+app.listen(PORT, "0.0.0.0", () => console.log("port is running good "+PORT))
