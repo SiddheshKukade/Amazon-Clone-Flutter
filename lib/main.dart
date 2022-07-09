@@ -1,4 +1,6 @@
 import 'package:amazon_clone_flutter/constants/global_varaibles.dart';
+import 'package:amazon_clone_flutter/features/auth/screens/auth_screen.dart';
+import 'package:amazon_clone_flutter/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,27 +27,36 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      onGenerateRoute: , // will execute every time after we've used push name callback
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("App bar title "),
-        ),
-        body: Column(
-          children: [
-            const Center(
-              child: Text(
-                'Flutter Demo Home Page',
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                "Click Here !",
-              ),
-            ),
-          ],
-        ),
-      ),
+      onGenerateRoute: (settings) => generateRoute(
+          settings), // will execute every time after we've used push name callback
+      home: const AuthScreen(),
     );
   }
 }
+
+
+
+//  Scaffold(
+//         appBar: AppBar(
+//           title: const Text("App bar title "),
+//         ),
+//         body: Column(
+//           children: [
+//             const Center(
+//               child: Text(
+//                 'Flutter Demo Home Page',
+//               ),
+//             ),
+//             Builder(builder: (context) {
+//               return ElevatedButton(
+//                 onPressed: () {
+//                   Navigator.pushNamed(context, AuthScreen.routeName);
+//                 },
+//                 child: const Text(
+//                   "Click Here !",
+//                 ),
+//               );
+//             }),
+//           ],
+//         ),
+//       ),
