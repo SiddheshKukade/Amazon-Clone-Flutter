@@ -1,5 +1,7 @@
 import 'package:amazon_clone_flutter/constants/global_varaibles.dart';
 import 'package:amazon_clone_flutter/features/auth/home/widgets/address_box.dart';
+import 'package:amazon_clone_flutter/features/auth/home/widgets/carousal_image.dart';
+import 'package:amazon_clone_flutter/features/auth/home/widgets/deal_of_the_day.dart';
 import 'package:amazon_clone_flutter/features/auth/home/widgets/top_categories.dart';
 import 'package:amazon_clone_flutter/features/auth/widgets/bottom_bar.dart';
 import 'package:amazon_clone_flutter/provider/user_provider.dart';
@@ -88,7 +90,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       // body: Center(child: Text(user.toJson())),
       body: Column(
-        children: const [AddressBox(), SizedBox(height: 10), TopCategories()],
+        children: const [
+          AddressBox(),
+          SizedBox(height: 10),
+          TopCategories(),
+          CarouselImage(),
+          DealOfDay(),
+        ],
       ),
     );
   }
