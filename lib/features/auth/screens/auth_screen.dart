@@ -35,7 +35,7 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void signUpUser() {
-    authService.SignupUser(
+    authService.signUpUser(
       context: context,
       email: _emailController.text,
       password: _passwordController.text,
@@ -44,7 +44,7 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void signInUser() {
-    authService.SignInUser(
+    authService.signInUser(
       context: context,
       email: _emailController.text,
       password: _passwordController.text,

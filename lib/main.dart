@@ -1,5 +1,7 @@
 import 'package:amazon_clone_flutter/constants/global_varaibles.dart';
+import 'package:amazon_clone_flutter/features/auth/home/screens/home_screen.dart';
 import 'package:amazon_clone_flutter/features/auth/screens/auth_screen.dart';
+import 'package:amazon_clone_flutter/features/auth/services/auth_service.dart';
 import 'package:amazon_clone_flutter/provider/user_provider.dart';
 import 'package:amazon_clone_flutter/router.dart';
 import 'package:flutter/material.dart';
@@ -8,18 +10,31 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     MultiProvider(
-      child: const MyApp(),
       providers: [
         ChangeNotifierProvider(
           create: (context) => UserProvider(),
         ),
       ],
+      child: const MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final AuthService authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    authService.getUserData(context: context);
+  }
 
   // This widget is the root of your application.
   @override
@@ -40,34 +55,9 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: (settings) => generateRoute(
           settings), // will execute every time after we've used push name callback
-      home: const AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? const HomeScreen()
+          : const AuthScreen(),
     );
   }
 }
-
-
-
-//  Scaffold(
-//         appBar: AppBar(
-//           title: const Text("App bar title "),
-//         ),
-//         body: Column(
-//           children: [
-//             const Center(
-//               child: Text(
-//                 'Flutter Demo Home Page',
-//               ),
-//             ),
-//             Builder(builder: (context) {
-//               return ElevatedButton(
-//                 onPressed: () {
-//                   Navigator.pushNamed(context, AuthScreen.routeName);
-//                 },
-//                 child: const Text(
-//                   "Click Here !",
-//                 ),
-//               );
-//             }),
-//           ],
-//         ),
-//       ),
