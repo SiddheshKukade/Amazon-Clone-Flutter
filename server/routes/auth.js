@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const authRouter = express.Router();
 var User = require("./models/user")
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const auth = require('../middlewares/auth');
 
 authRouter.post('/api/signup', async (req, res) => {
     try {
@@ -50,6 +51,29 @@ authRouter.post("/api/signin", async (req, res) => {
         res.status(500).json({ error: e.message });
     }
 })
+
+authRouter.post("/", async (req, res) => {
+    try {
+        const token = req.header("x-auth-token");
+        if (!token) return res.json(false);
+
+        const verified = jwt.verify(token, "passwordKey");
+        if (!verified) return res.json(false)
+
+        const user = await User.findById(verified.id)
+        if (!user) return res.json(false)
+        //if all good 
+        res.json(true)
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+})
+
+authRouter.get("/api/tokenIsValid", auth, async (req, res) => {
+    const user = await User.findById(req.user);
+    res.json({ ...user._doc, token: req.token })
+})
+
 
 
 module.exports = authRouter;
