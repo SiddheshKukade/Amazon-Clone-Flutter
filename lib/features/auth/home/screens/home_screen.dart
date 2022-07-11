@@ -1,9 +1,10 @@
 import 'package:amazon_clone_flutter/constants/global_varaibles.dart';
 import 'package:amazon_clone_flutter/features/auth/home/widgets/address_box.dart';
+import 'package:amazon_clone_flutter/features/auth/home/widgets/top_categories.dart';
 import 'package:amazon_clone_flutter/features/auth/widgets/bottom_bar.dart';
 import 'package:amazon_clone_flutter/provider/user_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/home";
@@ -16,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
+    // final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -86,7 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       // body: Center(child: Text(user.toJson())),
-      body: Column(children: [AddressBox()]),
+      body: Column(
+        children: const [AddressBox(), SizedBox(height: 10), TopCategories()],
+      ),
     );
   }
 }
